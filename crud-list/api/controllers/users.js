@@ -24,3 +24,28 @@ export const addUser = (req, res) => {
 
  });
 };
+
+export const updateUser = (req, res) => {
+    const q =  "UPDATE usuarios SET `nome` = ? , `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?";
+    const values =[
+        req.body.nome,
+        req.body.email,
+        req.body.telefone,
+        req.body.cidade,
+    ];
+    db.query(q, [...values, req.params.id], (err) =>{
+        if(err) return res.json(err);
+        return res.status(200).json("User atualizado com sucesso");
+    });
+};
+
+export const getUser = (req, res) => {
+    const userId = req.params.id; 
+    const q = "SELECT * FROM usuarios WHERE id = ?"; 
+
+    db.query(q, [userId], (err, data) => {
+        if (err) return res.json(err);
+        if (data.length === 0) return res.status(404).json("Usuário não encontrado");
+        return res.status(200).json(data[0]); 
+    });
+};

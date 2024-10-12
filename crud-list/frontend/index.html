@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,200;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
   
-    <script src="main.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./index.js" defer></script>
 
     <title>CRUD</title>
 </head>
@@ -19,6 +19,7 @@
     </header>
     <main>
         <button type="button" class="button blue" id="cadastrarCliente">Cadastrar Cliente</button>
+        
         <table class="records" id="tableClient">
             <thead>
                 <tr>
@@ -30,9 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                
-                </tr>
+                <!-- Linhas da tabela serão preenchidas aqui pelo JavaScript -->
             </tbody>
         </table>
         <div class="modal" id="modal">
@@ -42,13 +41,14 @@
                     <span class="modal-close" id="modalClose">&#10006;</span>
                 </header>
                 <form class="modal-form" id="form">
-                    <input type="text" id="nome" data-index="new" class="modal-field" placeholder="Nome do Cliente" required >
-                    <input type="email" id="email" class="modal-field" placeholder="e-mail do Cliente" required >
-                    <input type="text" id="celular" class="modal-field" placeholder="Celular do Cliente"required >
-                    <input type="text" id="cidade" class="modal-field" placeholder="Cidade do Cliente" required >
+                    <input type="text" id="nome" data-index="new" class="modal-field" placeholder="Nome do Cliente" required>
+                    <input type="email" id="email" class="modal-field" placeholder="E-mail do Cliente" required>
+                    <input type="text" id="celular" class="modal-field" placeholder="Celular do Cliente" required>
+                    <input type="text" id="cidade" class="modal-field" placeholder="Cidade do Cliente" required>
                 </form>
                 <footer class="modal-footer">
                     <button class="button green" id="salvar">Salvar</button>
+                    <button class="button blue" id="atualizar">Atualizar</button>
                     <button class="button blue" id="cancelar">Cancelar</button>
                 </footer>
             </div>
@@ -57,6 +57,6 @@
     <footer>
         Copyright &copy; Geremias Santos
     </footer>
-    <script src="./index.js"></script>
+    <script src="./main.js"></script>
 </body>
 </html>
