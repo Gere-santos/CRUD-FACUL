@@ -110,6 +110,20 @@ const updateClient = async () => {
     }
 };
 
+// Função para excluir um cliente
+const deleteClient = async (id) => {
+    if (confirm("Tem certeza que deseja excluir este cliente?")) { // Confirmação antes da exclusão
+        try {
+            await axios.delete(`http://localhost:8800/${id}`); // Envia a requisição DELETE
+            console.log('Cliente excluído com sucesso!');
+
+            fetchClients(); // Atualiza a lista de clientes após a exclusão
+        } catch (error) {
+            console.error('Erro ao excluir cliente:', error);
+        }
+    }
+};
+
 
 
 // Eventos para abrir e fechar o modal
@@ -122,6 +136,7 @@ document.getElementById('salvar').addEventListener('click', (event) => {
     event.preventDefault();
     createClient(); // Cria um novo cliente
 });
+
 
 // Evento para atualizar cliente
 document.getElementById('atualizar').addEventListener('click', (event) => {

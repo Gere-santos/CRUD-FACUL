@@ -49,3 +49,12 @@ export const getUser = (req, res) => {
         return res.status(200).json(data[0]); 
     });
 };
+export const deleteUser = (req, res) => {
+    const userId = req.params.id;
+    const q = "DELETE FROM usuarios WHERE id = ?";
+
+    db.query(q, [userId], (err) => {
+        if (err) return res.json(err);
+        return res.status(200).json("Usuário excluído com sucesso!");
+    });
+};  
