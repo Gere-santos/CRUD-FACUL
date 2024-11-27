@@ -1,7 +1,7 @@
 // Função para buscar e exibir os clientes
 const fetchClients = async () => {
     try {
-        const response = await axios.get('http://localhost:8800/'); // Ajuste a URL conforme necessário
+        const response = await axios.get('http://localhost:8800/'); 
         const clients = response.data;
         updateTable(clients); // Atualiza a tabela com os dados recebidos
     } catch (error) {
@@ -15,8 +15,9 @@ const createClient = async () => {
     const email = document.getElementById('email').value.trim();
     const telefone = document.getElementById('celular').value.trim();
     const cidade = document.getElementById('cidade').value.trim();
+    const uf = document.getElementById('uf').value.trim();
 
-    const newClient = { nome, email, telefone, cidade };
+    const newClient = { nome, email, telefone, cidade, uf };
 
     try {
         const response = await axios.post('http://localhost:8800/', newClient); // Envia os dados do novo cliente
@@ -44,6 +45,7 @@ const updateTable = (clients) => {
                 <td>${client.email}</td>
                 <td>${client.telefone}</td>
                 <td>${client.cidade}</td>
+                 <td>${client.uf}</td>
                 <td>
                     <button class="button green" onclick="editClient(${client.id})">Editar</button>
                     <button class="button red" onclick="deleteClient(${client.id})">Excluir</button>
@@ -83,6 +85,7 @@ const editClient = async (id) => {
         document.getElementById('email').value = client.email;
         document.getElementById('celular').value = client.telefone;
         document.getElementById('cidade').value = client.cidade;
+        document.getElementById('uf').value = client.uf;
         
         
     } catch (error) {
@@ -97,8 +100,9 @@ const updateClient = async () => {
     const email = document.getElementById('email').value.trim();
     const telefone = document.getElementById('celular').value.trim();
     const cidade = document.getElementById('cidade').value.trim();
+    const uf = document.getElementById('uf').value.trim();
 
-    const updatedClient = { nome, email, telefone, cidade };
+    const updatedClient = { nome, email, telefone, cidade, uf };
 
     try {
         await axios.get(`http://localhost:8800/${id}`); // Busca o cliente pelo ID

@@ -10,12 +10,13 @@ export const getUsers = (_, res) => {
 };
 
 export const addUser = (req, res) => {
- const q = "INSERT INTO usuarios(`nome`, `email`, `telefone`, `cidade`) VALUES(?)";
+ const q = "INSERT INTO usuarios(`nome`, `email`, `telefone`, `cidade`, `uf`) VALUES(?)";
  const values =[
     req.body.nome,
     req.body.email,
     req.body.telefone,
-    req.body.cidade
+    req.body.cidade,
+    req.body.uf
  ];
 
  db.query(q, [values], (err) => {
@@ -26,12 +27,13 @@ export const addUser = (req, res) => {
 };
 
 export const updateUser = (req, res) => {
-    const q =  "UPDATE usuarios SET `nome` = ? , `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?";
+    const q =  "UPDATE usuarios SET `nome` = ? , `email` = ?, `telefone` = ?, `cidade` = ?, `uf` = ? WHERE `id` = ?";
     const values =[
         req.body.nome,
         req.body.email,
         req.body.telefone,
         req.body.cidade,
+        req.body.uf
     ];
     db.query(q, [...values, req.params.id], (err) =>{
         if(err) return res.json(err);
