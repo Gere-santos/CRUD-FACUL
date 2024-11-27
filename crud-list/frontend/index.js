@@ -33,7 +33,9 @@ const createClient = async () => {
 // Função para atualizar a tabela de clientes
 const updateTable = (clients) => {
     const tableBody = document.querySelector('#tableClient tbody');
-    tableBody.innerHTML = ''; // Limpa a tabela antes de adicionar novos dados
+    tableBody.innerHTML = '';
+    
+    // Limpa a tabela antes de adicionar novos dados
 
     clients.forEach(client => {
         const row = `
@@ -143,6 +145,32 @@ document.getElementById('atualizar').addEventListener('click', (event) => {
     event.preventDefault();
     updateClient(); // Atualiza um cliente existente
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleDarkModeButton = document.getElementById('toggleDarkMode');
+    const body = document.body;
+
+    // Verificar se o modo escuro foi ativado anteriormente
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark-mode');
+        toggleDarkModeButton.textContent = 'Modo Claro';
+    }
+
+    // Alternar o modo escuro
+    toggleDarkModeButton.addEventListener('click', function () {
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+            toggleDarkModeButton.textContent = 'Modo Claro';
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+            toggleDarkModeButton.textContent = 'Modo Escuro';
+        }
+    });
+});
+
 
 // Carrega os clientes ao iniciar a página
 document.addEventListener('DOMContentLoaded', fetchClients);
